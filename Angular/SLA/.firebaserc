@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sla-web": {
+      "hosting": {
+        "SLA": [
+          "sla-web"
+        ]
+      }
+    }
+  }
+}

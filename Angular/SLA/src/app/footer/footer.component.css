@@ -1,0 +1,14 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: darkgray;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+.footer_img{
+    height: 20px;
+    
+}
