@@ -1,5 +1,5 @@
 <div class="center">
-
+    <!-- 
     <form> 
         <label>
             Username
@@ -24,6 +24,41 @@
         <div>
             <button>Login</button>
         </div>
-    </form>
+    </form> -->
 
+
+
+    
+    <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
+    <form  (ngSubmit)="sendData()">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" (input)="usernameInput($event)" (keyup.enter)="sendData()" #login formControlName="username" class="form-control" />
+            <div class="invalid-feedback">
+                <div>Username is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" (input)="passwordInput($event)" formControlName="password" class="form-control" />
+            <div class="invalid-feedback">
+                <div>Password is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+        </div>
+    </form>
+    <div class="form-group">
+        <button (click)="sendData()" class="btn btn-primary">
+            <span *ngIf="loginProcess" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+        </button>
+    </div>
 </div>
+
+
+<!-- <div class="center">
+    <pre>
+        {{receivedJSON}}
+    </pre>
+</div> -->

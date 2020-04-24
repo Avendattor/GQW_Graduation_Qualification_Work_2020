@@ -1,31 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-body{
-    font-family: 'Roboto', sans-serif;
-    margin: 0px;
-    background-color: #eceff1 !important;
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0px;
+  background-color: #c0c0c0 !important;
+}
+
+:root {
+    --primary: #0087a9;
+    --blue: #0087a9;
 }
 
 .center {
-    margin: auto;
-    width: 50%;
-    max-width: 400px;
-    background-color: #FFFFFF !important;
-    
-    border:1px #CCCCCC;
-    
-    padding: 25px;
+  margin: auto;
+  width: 80%;
+  max-width: 400px;
+  background-color: #ffffff !important;
 
-    margin-top: 50px;
-    margin-bottom: 50px;
+  border: 1px #cccccc;
 
-    border-radius: 5px;
-    box-shadow: 
-    0 2px 2px 0 rgba(0,0,0,0.14), 
-    0 3px 1px -2px rgba(0,0,0,0.12), 
-    0 1px 5px 0 rgba(0,0,0,0.2);
+  padding: 25px;
 
-    
-  }
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.center-wide {
+  margin: auto;
+  width: 80%;
+  max-width: 95%;
+  background-color: #ffffff !important;
+
+  border: 1px #cccccc;
+
+  padding: 25px;
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+

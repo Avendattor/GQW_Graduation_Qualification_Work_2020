@@ -1,8 +1,34 @@
 <div>
   <app-top-bar></app-top-bar>
 </div>
-<div>
-  <app-login-form></app-login-form>
+<div *ngIf="hideLogin">
+  <app-login-form (loginEvent)="receiveData($event)"></app-login-form>
+  
+</div>
+<div *ngIf="!hideLogin">
+  <div class="center">
+    You are authorized, current login: "{{ curLogin }}"
+  </div>
+  <div *ngIf="!hideLogin" class="center-wide">
+    <p>
+      [debug]
+    </p>
+    <p>
+      Received token:
+    </p>
+    <pre>
+        "{{ currentToken }}"
+    </pre>
+    <p>
+      Sent login: "{{ curLogin }}"
+    </p>
+    <p>
+      Sent password hash: "{{ curPassword }}"
+    </p>
+    <p>
+      Firmware data Received:"{{ isFirmwareDataReceived }}"
+    </p>
+  </div>
 </div>
 <div>
   <app-footer></app-footer>
