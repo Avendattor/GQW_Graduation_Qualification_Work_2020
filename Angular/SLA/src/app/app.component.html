@@ -1,15 +1,33 @@
 <div>
   <app-top-bar></app-top-bar>
 </div>
-<div *ngIf="hideLogin">
-  <app-login-form (loginEvent)="receiveData($event)"></app-login-form>
-  
-</div>
 <div *ngIf="!hideLogin">
+  <app-login-form (loginEvent)="receiveData($event)"></app-login-form>
+
+</div>
+<div *ngIf="hideLogin">
   <div class="center">
-    You are authorized, current login: "{{ curLogin }}"
+    
+      You are authorized.
+    
+    
+      Current login: "{{ curLogin }}"
+     
   </div>
-  <div *ngIf="!hideLogin" class="center-wide">
+    <div class="center-wide">
+    <app-main-top 
+    [isAuth]="isAuth"
+    [currentToken]="currentToken"
+    [currentSLAURL]="currentSLAURL"
+    [proxyURL]="proxyURL">
+      <div>
+        <h6>
+          current login: "{{ curLogin }}"
+        </h6>
+      </div>
+    </app-main-top>
+  </div>
+  <div *ngIf="hideLogin" class="center-wide">
     <p>
       [debug]
     </p>

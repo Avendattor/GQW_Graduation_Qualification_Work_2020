@@ -18,6 +18,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 
 export class AppComponent {
   title = 'SLA';
+
+  // using proxy cause of CORS policy restrictions 
   proxyURL = "https://cors-anywhere.herokuapp.com/";
   testURL = "https://postman-echo.com/post/";
   currentSLAURL = "http://mysla.dlink.ru:8090/";
@@ -37,9 +39,13 @@ export class AppComponent {
   isFirmwareDataReceived: boolean;
   firmwareData;
 
-  hideLogin = true;
+  // is Authorization complete
+  isAuth = false;
+  // login-form hide after Auth
+  hideLogin = false;
   
 
+  // gets data from login form, hashes password and send to server
   receiveData($event) {
     this.curLogin = $event[0];
     this.curPassword = $event[1];
@@ -66,6 +72,7 @@ export class AppComponent {
 
   }
 
+  // posts login data to server, gets token,loads main page
   private auth() {
     this.http.post(this.proxyURL + this.currentSLAURL + this.loginURL, this.postLoginData, {
       headers: new HttpHeaders({
@@ -80,7 +87,9 @@ export class AppComponent {
 
       if (this.currentToken = data.token) {
         this.loadMainPage();
+        this.isAuth = true;
       }
+      
     });
 
     
@@ -106,6 +115,7 @@ export class AppComponent {
     });
   }
 
+  // hides login-form and loads some data
   private loadMainPage(){
 
     //if (this.currentToken != "not_yet") {
