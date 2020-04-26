@@ -9,6 +9,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainTopComponent } from './main-top/main-top.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MainTopComponent } from './main-top/main-top.component';
     TopBarComponent,
     LoginFormComponent,
     FooterComponent,
-    MainTopComponent
+    MainTopComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

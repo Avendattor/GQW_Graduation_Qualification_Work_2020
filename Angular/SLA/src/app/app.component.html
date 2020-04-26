@@ -6,20 +6,14 @@
 
 </div>
 <div *ngIf="hideLogin">
-  <div class="center">
-    
-      You are authorized.
-    
-    
-      Current login: "{{ curLogin }}"
-     
-  </div>
+  
     <div class="center-wide">
     <app-main-top 
     [isAuth]="isAuth"
     [currentToken]="currentToken"
     [currentSLAURL]="currentSLAURL"
-    [proxyURL]="proxyURL">
+    [proxyURL]="proxyURL"
+    [curLogin]="curLogin">
       <div>
         <h6>
           current login: "{{ curLogin }}"
@@ -28,9 +22,14 @@
     </app-main-top>
   </div>
   <div *ngIf="hideLogin" class="center-wide">
-    <p>
+    <app-search>
+
+    </app-search>
+  </div>
+  <div *ngIf="hideLogin" class="center-wide">
+    <h3>
       [debug]
-    </p>
+    </h3>
     <p>
       Received token:
     </p>

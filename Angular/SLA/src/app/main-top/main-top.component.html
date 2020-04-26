@@ -1,10 +1,26 @@
 <div>
-    <h5>General statistics summary:</h5>
-    <p>
-        Devices in total: {{ totalDevices }}
-    </p>
-    <p>
-        isAuth: "{{ isAuth }}"
-    </p>
+    <h3>General info</h3>
     
+    <table class="generalTable">
+        <tbody>
+            <tr>
+                <td>Current login</td>
+                <td> {{ curLogin }} </td>
+            </tr>
+            
+            <tr>
+                <td>Last hour reports</td>
+                <td> {{ reportsLastHour }} </td>
+            </tr>
+            
+            <tr>
+                <td>Devices in total</td>
+                <td>{{ totalDevices }}</td>
+            </tr>
+            
+        
+        </tbody>
+
+    </table>
+
 </div>

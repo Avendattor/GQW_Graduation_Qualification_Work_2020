@@ -83,7 +83,7 @@ export class AppComponent {
       // console.log(data.token);
       this.currentToken = data.token;
       // console.log(this.currentToken);
-      this.receivedJSON = JSON.stringify(data.receivedJSON);
+      // this.receivedJSON = JSON.stringify(data.receivedJSON);
 
       if (this.currentToken = data.token) {
         this.loadMainPage();
@@ -108,7 +108,7 @@ export class AppComponent {
       // console.log(data.token);
       this.firmwareData = data;
       // console.log(this.currentToken);
-      this.receivedJSON = JSON.stringify(data.receivedJSON);
+      // this.receivedJSON = JSON.stringify(data.receivedJSON);
       if (this.firmwareData != undefined) {
         this.isFirmwareDataReceived = true;
       }

@@ -10,16 +10,23 @@ import { catchError } from 'rxjs/operators';
 export class MainTopComponent implements OnInit {
 
   receivedJSON: object;
-  stringifiedJSON;
+  // stringifiedJSON;
   totalDevices: string;
   totalDevicesURL = "/info/totalDevices";
+
+  timestamp: number;
+  reportsLastHour;
+  reportsLastHourURL: string = "logs/lasthour/";
 
   // is Authorization complete
   @Input() isAuth: boolean;
 
+  @Input() curLogin: string;
+
   @Input() currentToken;
   @Input() proxyURL;
   @Input() currentSLAURL;
+  
 
   getTotalDevices() {
     if (this.isAuth == true) {
@@ -30,17 +37,39 @@ export class MainTopComponent implements OnInit {
         })
       }).toPromise().then((data: any) => {
         this.totalDevices = data.length;
-        this.stringifiedJSON = JSON.stringify(data.receivedJSON);
+        // this.stringifiedJSON = JSON.stringify(data.receivedJSON);
 
       });
     }
+  }
+
+  getLastHourReports() {
+    if (this.isAuth == true) {
+      this.makeTimeStamp();
+      this.http.get(this.proxyURL + this.currentSLAURL + this.reportsLastHourURL + this.timestamp, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': this.currentToken
+        })
+      }).toPromise().then((data: any) => {
+        this.reportsLastHour = data;
+        // this.stringifiedJSON = JSON.stringify(data.receivedJSON);
+
+      });
+    }
+  }
+
+  makeTimeStamp() {
+    var currentDate = new Date();
+    this.timestamp = currentDate.getTime();
   }
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getTotalDevices();
+    this.getLastHourReports();
   }
-
+  
 
 }
