@@ -27,6 +27,7 @@ export class AppComponent {
   firmwareURL = "info/firmware";
 
   public currentToken: string = "not_yet";
+  isTokenReceived: boolean = false;
 
   receivedJSON: string;
 
@@ -86,6 +87,7 @@ export class AppComponent {
       // this.receivedJSON = JSON.stringify(data.receivedJSON);
 
       if (this.currentToken = data.token) {
+        this.isTokenReceived = true;
         this.loadMainPage();
         this.isAuth = true;
       }
