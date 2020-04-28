@@ -21,7 +21,7 @@
       </div>
     </app-main-top>
   </div>
-  <div *ngIf="hideLogin" class="center-wide">
+  <div *ngIf="hideLogin">
     <app-search>
 
     </app-search>
@@ -35,7 +35,7 @@
     </p>
     
     <p>
-      Firmware data Received:"{{ isFirmwareDataReceived }}"
+      Firmware data Received: "{{ isFirmwareDataReceived }}"
     </p>
   </div>
 </div>
