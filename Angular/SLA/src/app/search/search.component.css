@@ -3,6 +3,12 @@
     align-self: center;
 }
 
-/* .searchIPMAC{
-    max-width: (100%-80px);
-} */
+.searchFormIPMAC{
+    
+   
+   width: calc(100% - 100px);
+} 
+
+.inputSearchIPMAC{
+     width: 100%;
+}

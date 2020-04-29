@@ -27,13 +27,13 @@ export class SearchComponent implements OnInit {
   searchByIPInput(event: any) {
     const value = event.target.value
     this.inputToSearchByIP = value
-    //console.log(this.searchByIPInput)
+    //console.log(this.inputToSearchByIP)
   }
 
   searchByMACInput(event: any) {
     const value = event.target.value
     this.inputToSearchByMAC = value
-    //console.log(this.searchByIPInput)
+    //console.log(this.inputToSearchByMAC)
   }
 
   searchByIP() {
@@ -52,9 +52,10 @@ export class SearchComponent implements OnInit {
   }
 
   clearAllFields(){
-    console.log("clearAllFields()")
-    this.inputToSearchByIP = '1';
-    this.inputToSearchByMAC = "1";
+    //console.log("clearAllFields()");
+    this.inputToSearchByIP = undefined;
+    //console.log(this.inputToSearchByIP);
+    this.inputToSearchByMAC = undefined;
   }
 
   deviceSearch(){

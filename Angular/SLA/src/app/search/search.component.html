@@ -3,24 +3,54 @@
 
     <div class="div-inline">
         <div class="form-group">
-            <label>
-                Search by IP 
-                <!-- [{{input_searchByIP}}]  -->
-            </label>
-            <input type="text" class="form-control searchIPMAC" maxlength="15" placeholder="0.0.0.0" (input)="searchByIPInput($event)"/>
+
+            <div>
+                <div class="form-group">
+                    <div>
+                        <label>
+                            Search by IP
+                            <!-- [{{input_searchByIP}}]  -->
+                        </label>
+                    </div>
+                    <div>
+                        <div class="d-inline-block searchFormIPMAC">
+
+                            <input type="text" class="form-control inputSearchIPMAC" maxlength="15"
+                                placeholder="0.0.0.0" (input)="searchByIPInput($event)" />
+
+                        </div>
+
+                        <div class="float-right">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+
+                </div>
+            
+                <div class="form-group">
+                    <div>
+                        <label>
+                            Search by MAC
+                            <!-- [{{ inputToSearchByMAC }}] -->
+                        </label>
+                    </div>
+                    <div class="d-inline-block searchFormIPMAC">
+                        <input type="text" class="form-control inputSearchIPMAC" maxlength="17"
+                            placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)" />
+                    </div>
+                    <div class="float-right">
+                        <button class="btn btn-primary" >Search</button>
+                    </div>
+
+                </div>
+            </div>
+            
+
         </div>
-        
+
     </div>
-    <div class="div-inline">
-        <div class="form-group">
-            <label>
-                Search by MAC 
-                <!-- [{{ inputToSearchByMAC }}] -->
-            </label>
-            <input type="text" class="form-control" maxlength="17" placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)"/>
-        </div>
-    </div>
-        
+
+
     <!-- <h3>Filter</h3> -->
 
 
@@ -28,22 +58,16 @@
 
         <!-- <button  class="btn btn-primary">Filter</button> -->
 
-        <button class="btn btn-primary" (click)="clearAllFields()" >Clear</button>
-
-        <button class="btn btn-primary" (click)="deviceSearch()">Search</button>
-
-
+        <button class="btn btn-primary" (click)="clearAllFields()">Clear all fields</button>
         
-
-
     </div>
 </div>
 
 <div class="center-wide">
     <h3>Results found</h3>
     <div>
-        
-        
+
+
         <table class="generalTable">
             <tbody>
                 <tr>
@@ -58,10 +82,10 @@
                         <button class="btn btn-primary right btn-fit" (click)="showDevicesList()">Show</button>
                     </td>
                 </tr>
-                
+
             </tbody>
-    
+
         </table>
-    
+
     </div>
 </div>
