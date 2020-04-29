@@ -7,12 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  input_searchByIP: string;
-  input_searchByMAC: string;
+  inputToSearchByIP: string;
+  inputToSearchByMAC: string;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  searchByIPInput(event: any) {
+    const value = event.target.value
+    this.inputToSearchByIP = value
+    //console.log(this.searchByIPInput)
   }
 
+  searchByMACInput(event: any) {
+    const value = event.target.value
+    this.inputToSearchByMAC = value
+    //console.log(this.searchByIPInput)
+  }
 }

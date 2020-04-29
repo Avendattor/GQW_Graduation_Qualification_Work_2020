@@ -1,13 +1,26 @@
 <div class="center-wide">
     <h3>Search</h3>
-    <div class="form-group">
-        <label>Search by IP </label>
-        <input type="text" class="form-control" maxlength="15" placeholder="0.0.0.0" />
+
+    <div class="div-inline">
+        <div class="form-group">
+            <label>
+                Search by IP 
+                <!-- [{{input_searchByIP}}]  -->
+            </label>
+            <input type="text" class="form-control" maxlength="15" placeholder="0.0.0.0" (input)="searchByIPInput($event)"/>
+        </div>
+        
     </div>
-    <div class="form-group">
-        <label>Search by MAC </label>
-        <input type="text" class="form-control" maxlength="17" placeholder="00:00:00:00:00:00" />
+    <div class="div-inline">
+        <div class="form-group">
+            <label>
+                Search by MAC 
+                <!-- [{{ inputToSearchByMAC }}] -->
+            </label>
+            <input type="text" class="form-control" maxlength="17" placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)"/>
+        </div>
     </div>
+        
     <!-- <h3>Filter</h3> -->
 
 
