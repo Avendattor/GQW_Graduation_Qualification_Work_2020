@@ -7,7 +7,7 @@
                 Search by IP 
                 <!-- [{{input_searchByIP}}]  -->
             </label>
-            <input type="text" class="form-control" maxlength="15" placeholder="0.0.0.0" (input)="searchByIPInput($event)"/>
+            <input type="text" class="form-control searchIPMAC" maxlength="15" placeholder="0.0.0.0" (input)="searchByIPInput($event)"/>
         </div>
         
     </div>
@@ -28,13 +28,40 @@
 
         <!-- <button  class="btn btn-primary">Filter</button> -->
 
-        <button class="btn btn-primary">Clear</button>
+        <button class="btn btn-primary" (click)="clearAllFields()" >Clear</button>
 
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-primary" (click)="deviceSearch()">Search</button>
+
+
+        
+
 
     </div>
 </div>
 
 <div class="center-wide">
     <h3>Results found</h3>
+    <div>
+        
+        
+        <table class="generalTable">
+            <tbody>
+                <tr>
+                    <th>Model</th>
+                    <th>MACs found</th>
+                    <th>List</th>
+                </tr>
+                <tr>
+                    <td>*model*</td>
+                    <td>*MACs*</td>
+                    <td>
+                        <button class="btn btn-primary right btn-fit" (click)="showDevicesList()">Show</button>
+                    </td>
+                </tr>
+                
+            </tbody>
+    
+        </table>
+    
+    </div>
 </div>

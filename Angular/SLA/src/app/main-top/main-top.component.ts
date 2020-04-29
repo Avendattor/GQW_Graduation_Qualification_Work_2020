@@ -23,6 +23,7 @@ export class MainTopComponent implements OnInit {
 
   @Input() curLogin: string;
 
+  // data for HTTP GET
   @Input() currentToken;
   @Input() proxyURL;
   @Input() currentSLAURL;

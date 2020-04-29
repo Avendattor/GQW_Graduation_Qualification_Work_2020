@@ -22,8 +22,11 @@
     </app-main-top>
   </div>
   <div *ngIf="hideLogin">
-    <app-search>
-
+    <app-search
+    [isAuth]="isAuth"
+    [currentToken]="currentToken"
+    [currentSLAURL]="currentSLAURL"
+    [proxyURL]="proxyURL">
     </app-search>
   </div>
   <div *ngIf="hideLogin" class="center-wide">
