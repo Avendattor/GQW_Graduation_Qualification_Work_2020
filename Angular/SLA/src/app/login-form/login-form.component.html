@@ -30,10 +30,10 @@
 
     
     <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
-    <form  (ngSubmit)="sendData()">
+    <form  (ngSubmit)="logIn()">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" (input)="usernameInput($event)" (keyup.enter)="sendData()" #login formControlName="username" class="form-control" />
+            <input type="text" (input)="usernameInput($event)" (keyup.enter)="logIn()" #login formControlName="username" class="form-control" />
             <div class="invalid-feedback">
                 <div>Username is required</div>
             </div>
@@ -49,7 +49,7 @@
         </div>
     </form>
     <div class="form-group text-right">
-        <button (click)="sendData()" class="btn btn-primary ">
+        <button (click)="logIn()" class="btn btn-primary ">
             <span *ngIf="loginProcess" class="spinner-border spinner-border-sm mr-1"></span>
             Login
         </button>

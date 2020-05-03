@@ -1,7 +1,7 @@
 import { Input, Component } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Md5 } from 'ts-md5/dist/md5';
+
 
 // import { Md5 } from 'angular-md5'
 
@@ -23,109 +23,83 @@ export class AppComponent {
   proxyURL = "https://cors-anywhere.herokuapp.com/";
   testURL = "https://postman-echo.com/post/";
   currentSLAURL = "http://mysla.dlink.ru:8090/";
-  loginURL = "login";
+
   firmwareURL = "info/firmware";
 
-  public currentToken: string = "not_yet";
+  currentToken: string;
   isTokenReceived: boolean = false;
 
-  receivedJSON: string;
+  receivedJSON: string = '';
 
-  curLogin: string;
-  curPassword;
+  curLogin: string = '';
 
-  postLoginData: object;
+
 
   getFirmware: object;
   isFirmwareDataReceived: boolean;
   firmwareData;
 
   // is Authorization complete
-  isAuth = false;
+  isAuth: boolean;
   // login-form hide after Auth
   hideLogin = false;
-  
 
-  // gets data from login form, hashes password and send to server
-  receiveData($event) {
-    this.curLogin = $event[0];
-    this.curPassword = $event[1];
-    this.curPassword = Md5.hashStr(this.curPassword);
-    this.postLoginData = {
-      username: this.curLogin,
-      password: this.curPassword
-    };
-    this.auth();
 
+  // gets data from login component
+  receiveToken($event) {
+    this.currentToken = $event;
+    //console.log(this.currentToken);
+    if (this.currentToken == $event || this.currentToken != '') {
+      this.isTokenReceived = true;
+    }
 
   }
 
+  receiveUsername($event) {
+    this.curLogin = $event;
+  }
 
-  hideLoginForm(){
+  receiveIsAuth($event) {
+    this.isAuth = $event;
+
+    if (this.isAuth = true && this.isTokenReceived == true && this.curLogin != '') {
+      this.loadMainPage();
+    }
+  }
+
+
+
+  hideLoginForm() {
     this.hideLogin = !this.hideLogin;
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-    // if (this.curPassword != undefined && this.curLogin !== undefined) {
-    //   this.Auth();
-    // }
 
-  }
-
-  // posts login data to server, gets token,loads main page
-  private auth() {
-    this.http.post(this.proxyURL + this.currentSLAURL + this.loginURL, this.postLoginData, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    }).toPromise().then((data: any) => {
-      // console.log(data);
-      // console.log(data.token);
-      this.currentToken = data.token;
-      // console.log(this.currentToken);
-      // this.receivedJSON = JSON.stringify(data.receivedJSON);
-
-      if (this.currentToken = data.token) {
-        this.isTokenReceived = true;
-        this.loadMainPage();
-        this.isAuth = true;
-      }
-      
-    });
-
-    
-      
-    
-  }
 
   private getFirmwareData() {
+    //console.log(`CurToken = ` + this.currentToken);
     this.http.get(this.proxyURL + this.currentSLAURL + this.firmwareURL, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'token': this.currentToken
       })
     }).toPromise().then((data: any) => {
-      // console.log(data);
+      //console.log(data);
       // console.log(data.token);
       this.firmwareData = data;
       // console.log(this.currentToken);
       // this.receivedJSON = JSON.stringify(data.receivedJSON);
-      if (this.firmwareData != undefined) {
+      if (this.firmwareData != '') {
         this.isFirmwareDataReceived = true;
       }
     });
   }
 
   // hides login-form and loads some data
-  private loadMainPage(){
+  private loadMainPage() {
 
-    //if (this.currentToken != "not_yet") {
-      this.getFirmwareData();
-      this.hideLoginForm()
-    //}
-
-
-    
+    this.hideLoginForm();
+    this.getFirmwareData();
   }
 }

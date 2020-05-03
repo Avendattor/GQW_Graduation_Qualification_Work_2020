@@ -2,7 +2,13 @@
   <app-top-bar></app-top-bar>
 </div>
 <div *ngIf="!hideLogin">
-  <app-login-form (loginEvent)="receiveData($event)"></app-login-form>
+  <app-login-form 
+  (sendTokenEvent)="receiveToken($event)"
+  (loadMainPageEvent)="receiveIsAuth($event)"
+  (sendUsernameEvent)="receiveUsername($event)"
+  [currentSLAURL]="currentSLAURL"
+  [proxyURL]="proxyURL"
+  ></app-login-form>
 
 </div>
 <div *ngIf="hideLogin">

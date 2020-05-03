@@ -11,32 +11,34 @@ export class MainTopComponent implements OnInit {
 
   receivedJSON: object;
   // stringifiedJSON;
-  totalDevices: string;
+  totalDevices: string = '';
   totalDevicesURL = "/info/totalDevices";
 
   timestamp: number;
-  reportsLastHour;
+  reportsLastHour = '';
   reportsLastHourURL: string = "logs/lasthour/";
 
   // is Authorization complete
-  @Input() isAuth: boolean;
+  @Input() isAuth: boolean = false;
 
-  @Input() curLogin: string;
+  @Input() curLogin: string = '';
 
   // data for HTTP GET
   @Input() currentToken;
-  @Input() proxyURL;
-  @Input() currentSLAURL;
-  
+  @Input() proxyURL = '';
+  @Input() currentSLAURL = '';
+
 
   getTotalDevices() {
     if (this.isAuth == true) {
+      //console.log(this.currentToken);
       this.http.get(this.proxyURL + this.currentSLAURL + this.totalDevicesURL, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': this.currentToken
         })
       }).toPromise().then((data: any) => {
+        //console.log("TD");
         this.totalDevices = data.length;
         // this.stringifiedJSON = JSON.stringify(data.receivedJSON);
 
@@ -68,9 +70,12 @@ export class MainTopComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getTotalDevices();
-    this.getLastHourReports();
+    if (this.isAuth == true) {
+      this.getTotalDevices();
+      this.getLastHourReports();
+    }
+
   }
-  
+
 
 }
