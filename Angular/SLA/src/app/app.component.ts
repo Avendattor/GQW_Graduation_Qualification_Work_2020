@@ -22,7 +22,7 @@ export class AppComponent {
   // using proxy cause of CORS policy restrictions 
   proxyURL = "https://cors-anywhere.herokuapp.com/";
   testURL = "https://postman-echo.com/post/";
-  currentSLAURL = "http://mysla.dlink.ru:8090/";
+  currentSLAURL = "http://mysla.dlink.ru/api/";
 
   firmwareURL = "info/firmware";
 

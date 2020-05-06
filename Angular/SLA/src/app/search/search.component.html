@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="float-right">
-                            <button class="btn btn-primary">Search</button>
+                            <button class="btn btn-primary" (click)="searchByIP()" >Search</button>
                         </div>
                     </div>
 
@@ -51,7 +51,131 @@
     </div>
 
 
-    <!-- <h3>Filter</h3> -->
+    <h3>Filter</h3>
+
+
+    <div class="div-inline">
+        <div class="form-group">
+
+            <div>
+                <div class="form-group">
+                    <div>
+                        <label>
+                            DROP ≥
+                            <!-- [{{input_searchByIP}}]  -->
+                        </label>
+                    </div>
+                    <div>
+                        <div class="d-inline-block w-100">
+
+                            <input type="text" class="form-control" 
+                                 (input)="SearchFilterDROP($event)" />
+
+                        </div>
+
+                        
+                    </div>
+
+                </div>
+            
+                <div class="form-group">
+                    <div>
+                        <label>CRC ≥</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterCRC($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Fragments ≥</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterFragments($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Link down ≥</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterLinkDown($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>64bytes ≥</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilter64bytes($event)" />
+                    </div>
+                </div>
+
+                
+
+                <div class="form-group">
+                    <div>
+                        <label>Device model</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterDeviceModel($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Device software</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterDeviceSoftware($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Serial number</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterSerialNumber($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Less from this day</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterLFTD($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>More from this day</label>
+                    </div>
+                    <div class="d-inline-block w-100">
+                        <input type="text" class="form-control"
+                             (input)="SearchFilterMFTD($event)" />
+                    </div>
+                </div>
+
+            </div>
+            
+
+        </div>
+
+    </div>
 
 
     <div class="div-button text-right">
