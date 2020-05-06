@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-search',
@@ -77,23 +79,23 @@ export class SearchComponent implements OnInit {
   }
 
   SearchFilterDeviceModel(event: any) {
-    this.IPMACFilterSearch[5] = event.target.value
-  }
-
-  SearchFilterDeviceSoftware(event: any) {
-    this.IPMACFilterSearch[6] = event.target.value
-  }
-
-  SearchFilterSerialNumber(event: any) {
     this.IPMACFilterSearch[7] = event.target.value
   }
 
-  SearchFilterLFTD(event: any) {
+  SearchFilterDeviceSoftware(event: any) {
     this.IPMACFilterSearch[8] = event.target.value
   }
 
-  SearchFilterMFTD(event: any) {
+  SearchFilterSerialNumber(event: any) {
     this.IPMACFilterSearch[9] = event.target.value
+  }
+
+  SearchFilterLFTD(event: any) {
+    this.IPMACFilterSearch[5] = event.target.value
+  }
+
+  SearchFilterMFTD(event: any) {
+    this.IPMACFilterSearch[6] = event.target.value
   }
 
   formJSONforIPMACSearch() {

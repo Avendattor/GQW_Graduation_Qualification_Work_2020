@@ -155,8 +155,9 @@
                         <label>Less from this day</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterLFTD($event)" />
+                        <input type="text" class="form-control" 
+                             (input)="SearchFilterLFTD($event)"
+                             placeholder="YYYY-MM-DD" />
                     </div>
                 </div>
 
@@ -166,8 +167,17 @@
                     </div>
                     <div class="d-inline-block w-100">
                         <input type="text" class="form-control"
-                             (input)="SearchFilterMFTD($event)" />
+                             (input)="SearchFilterMFTD($event)"
+                             placeholder="YYYY-MM-DD" />
                     </div>
+                </div>
+
+                <!-- <div>
+                    <input [matDatepicker]="myDatepicker">
+                    <mat-datepicker #myDatepicker></mat-datepicker>
+                </div> -->
+                <div>
+                    
                 </div>
 
             </div>
