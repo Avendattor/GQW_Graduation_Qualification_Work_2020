@@ -13,6 +13,8 @@ export class SearchComponent implements OnInit {
   inputToSearchByIP: string = null;
   inputToSearchByMAC: string;
 
+  areResultsFound: boolean = false;
+
   IPMACFilterSearch: object = [
     null,
     null,
@@ -26,7 +28,8 @@ export class SearchComponent implements OnInit {
     null
   ];
 
-  receivedIPSearchJSON;
+  // receivedIPSearchJSON: string;
+  parsedIPSearchJSON: object;
 
   // is Authorization complete
   @Input() isAuth: boolean;
@@ -131,12 +134,22 @@ export class SearchComponent implements OnInit {
           'token': this.currentToken
         })
       }).toPromise().then((data: any) => {
-        this.receivedIPSearchJSON = data;
-        //console.log(this.receivedIPSearchJSON);
-        // this.stringifiedJSON = JSON.stringify(data.receivedJSON);
-        // this.inputToSearchByIP = null
+        var receivedIPSearchJSON = data;
+        if (receivedIPSearchJSON == data && data != "[]" ) {
+          this.areResultsFound = true
+        }
+        
+        this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
+        // console.log(this.parsedIPSearchJSON);
       });
+       
     }
+  }
+
+  parseReceivedData(dataToParse: any) {
+    var dataStringified = JSON.stringify(dataToParse);
+    var parsedData = JSON.parse(dataStringified);
+    return parsedData;
   }
 
   clearAllFields(){
