@@ -20,6 +20,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 export class AppComponent {
   title = 'SLA';
 
+  isDebugActive = false;
+
   // using proxy cause of CORS policy restrictions 
   proxyURL = "https://cors-anywhere.herokuapp.com/";
   testURL = "https://postman-echo.com/post/";

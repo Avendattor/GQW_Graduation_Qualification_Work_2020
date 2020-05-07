@@ -35,18 +35,21 @@
     [proxyURL]="proxyURL">
     </app-search>
   </div>
-  <div *ngIf="hideLogin" class="center-wide">
-    <h3>
-      [debug]
-    </h3>
-    <p>
-      Is token received: "{{ isTokenReceived }}"
-    </p>
-    
-    <p>
-      Firmware data Received: "{{ isFirmwareDataReceived }}"
-    </p>
+  <div *ngIf="isDebugActive" >
+    <div *ngIf="hideLogin" class="center-wide">
+      <h3>
+        [debug]
+      </h3>
+      <p>
+        Is token received: "{{ isTokenReceived }}"
+      </p>
+  
+      <p>
+        Firmware data Received: "{{ isFirmwareDataReceived }}"
+      </p>
+    </div>
   </div>
+  
 </div>
 <div>
   <app-footer></app-footer>
