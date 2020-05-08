@@ -21,12 +21,12 @@
                         </div>
 
                         <div class="float-right">
-                            <button class="btn btn-primary" (click)="searchByIP()" >Search</button>
+                            <button class="btn btn-primary" (click)="searchByIP()">Search</button>
                         </div>
                     </div>
 
                 </div>
-            
+
                 <div class="form-group">
                     <div>
                         <label>
@@ -39,12 +39,12 @@
                             placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)" />
                     </div>
                     <div class="float-right">
-                        <button class="btn btn-primary" >Search</button>
+                        <button class="btn btn-primary">Search</button>
                     </div>
 
                 </div>
             </div>
-            
+
 
         </div>
 
@@ -68,23 +68,21 @@
                     <div>
                         <div class="d-inline-block w-100">
 
-                            <input type="text" class="form-control" 
-                                 (input)="SearchFilterDROP($event)" />
+                            <input type="text" class="form-control" (input)="SearchFilterDROP($event)" />
 
                         </div>
 
-                        
+
                     </div>
 
                 </div>
-            
+
                 <div class="form-group">
                     <div>
                         <label>CRC ≥</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterCRC($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilterCRC($event)" />
                     </div>
                 </div>
 
@@ -93,8 +91,7 @@
                         <label>Fragments ≥</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterFragments($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilterFragments($event)" />
                     </div>
                 </div>
 
@@ -103,8 +100,7 @@
                         <label>Link down ≥</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterLinkDown($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilterLinkDown($event)" />
                     </div>
                 </div>
 
@@ -113,20 +109,18 @@
                         <label>64bytes ≥</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilter64bytes($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilter64bytes($event)" />
                     </div>
                 </div>
 
-                
+
 
                 <div class="form-group">
                     <div>
                         <label>Device model</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterDeviceModel($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilterDeviceModel($event)" />
                     </div>
                 </div>
 
@@ -135,8 +129,7 @@
                         <label>Device software</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterDeviceSoftware($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilterDeviceSoftware($event)" />
                     </div>
                 </div>
 
@@ -145,8 +138,7 @@
                         <label>Serial number</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterSerialNumber($event)" />
+                        <input type="text" class="form-control" (input)="SearchFilterSerialNumber($event)" />
                     </div>
                 </div>
 
@@ -155,9 +147,8 @@
                         <label>Less from this day</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" 
-                             (input)="SearchFilterLFTD($event)"
-                             placeholder="YYYY-MM-DD" />
+                        <input type="text" class="form-control" (input)="SearchFilterLFTD($event)"
+                            placeholder="YYYY-MM-DD" />
                     </div>
                 </div>
 
@@ -166,9 +157,8 @@
                         <label>More from this day</label>
                     </div>
                     <div class="d-inline-block w-100">
-                        <input type="text" class="form-control"
-                             (input)="SearchFilterMFTD($event)"
-                             placeholder="YYYY-MM-DD" />
+                        <input type="text" class="form-control" (input)="SearchFilterMFTD($event)"
+                            placeholder="YYYY-MM-DD" />
                     </div>
                 </div>
 
@@ -177,11 +167,11 @@
                     <mat-datepicker #myDatepicker></mat-datepicker>
                 </div> -->
                 <div>
-                    
+
                 </div>
 
             </div>
-            
+
 
         </div>
 
@@ -193,7 +183,7 @@
         <!-- <button  class="btn btn-primary">Filter</button> -->
 
         <!-- <button class="btn btn-primary" (click)="clearAllFields()">Clear all fields</button> -->
-        
+
     </div>
 </div>
 

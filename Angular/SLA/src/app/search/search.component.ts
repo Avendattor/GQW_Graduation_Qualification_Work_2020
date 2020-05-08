@@ -135,14 +135,14 @@ export class SearchComponent implements OnInit {
         })
       }).toPromise().then((data: any) => {
         var receivedIPSearchJSON = data;
-        if (receivedIPSearchJSON == data && data != "[]" ) {
+        if (receivedIPSearchJSON == data && data != "[]") {
           this.areResultsFound = true
         }
-        
+
         this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
         // console.log(this.parsedIPSearchJSON);
       });
-       
+
     }
   }
 
@@ -152,17 +152,17 @@ export class SearchComponent implements OnInit {
     return parsedData;
   }
 
-  clearAllFields(){
+  clearAllFields() {
     //console.log("clearAllFields()");
     this.inputToSearchByIP = undefined;
     //console.log(this.inputToSearchByIP);
     this.inputToSearchByMAC = undefined;
   }
 
-  deviceSearch(){
+  deviceSearch() {
 
   }
 
-  showDevicesList(){}
-  
+  showDevicesList() { }
+
 }
