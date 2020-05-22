@@ -123,26 +123,27 @@ export class SearchComponent implements OnInit {
 
       // search for all results if field is empty
       if (this.inputToSearchByIP == null || this.inputToSearchByIP == "") {
-        var toSearchByIP = "all";
+        this.searchByMAC()
       }
       else {
-        toSearchByIP = this.inputToSearchByIP;
+        var toSearchByIP = this.inputToSearchByIP;
+        this.http.post(this.proxyURL + this.currentSLAURL + this.searchByIPURL + toSearchByIP, this.formJSONforIPMACSearch(), {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'token': this.currentToken
+          })
+        }).toPromise().then((data: any) => {
+          var receivedIPSearchJSON = data;
+          if (receivedIPSearchJSON == data && data != "[]") {
+            this.areResultsFound = true
+          }
+
+          this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
+          // console.log(this.parsedIPSearchJSON);
+        });
       }
 
-      this.http.post(this.proxyURL + this.currentSLAURL + this.searchByIPURL + toSearchByIP, this.formJSONforIPMACSearch(), {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'token': this.currentToken
-        })
-      }).toPromise().then((data: any) => {
-        var receivedIPSearchJSON = data;
-        if (receivedIPSearchJSON == data && data != "[]") {
-          this.areResultsFound = true
-        }
 
-        this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
-        // console.log(this.parsedIPSearchJSON);
-      });
 
     }
   }
