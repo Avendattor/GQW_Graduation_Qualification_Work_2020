@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-search',
@@ -29,8 +30,7 @@ export class SearchComponent implements OnInit {
   ];
 
   // receivedIPSearchJSON: string;
-  parsedIPSearchJSON: object;
-
+  parsedIPMACSearchJSON: object;
   // is Authorization complete
   @Input() isAuth: boolean;
 
@@ -136,15 +136,10 @@ export class SearchComponent implements OnInit {
           var receivedIPSearchJSON = data;
           if (receivedIPSearchJSON == data && data != "[]") {
             this.areResultsFound = true
+            this.showSearchResults(receivedIPSearchJSON);
           }
-
-          this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
-          // console.log(this.parsedIPSearchJSON);
         });
       }
-
-
-
     }
   }
 
@@ -165,16 +160,29 @@ export class SearchComponent implements OnInit {
           'token': this.currentToken
         })
       }).toPromise().then((data: any) => {
-        var receivedIPSearchJSON = data;
-        if (receivedIPSearchJSON == data && data != "[]") {
+        var receivedMACSearchJSON = data;
+        if (receivedMACSearchJSON == data && data != "[]") {
           this.areResultsFound = true
+          this.showSearchResults(receivedMACSearchJSON);
         }
-
-        this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
-        // console.log(this.parsedIPSearchJSON);
       });
-
     }
+  }
+
+  showSearchResults(receivedIPMACSearchJSON){
+    this.parsedIPMACSearchJSON = this.parseReceivedData(receivedIPMACSearchJSON);
+    // console.log(this.parsedIPSearchJSON);
+
+    const models = receivedIPMACSearchJSON.reduce((models, parsedArrayItem, index, array) => {
+      if (!models.find(model => parsedArrayItem.model.toString() === model)) {
+        models.push(parsedArrayItem.model.toString())
+      }
+      return models;
+    }, [])
+
+    // console.log(models);
+    // console.log("Models total: " + models.length);
+
   }
 
   parseReceivedData(dataToParse: any) {
