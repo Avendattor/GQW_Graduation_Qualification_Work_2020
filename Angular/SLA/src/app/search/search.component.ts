@@ -39,6 +39,7 @@ export class SearchComponent implements OnInit {
   @Input() proxyURL;
   @Input() currentSLAURL;
   searchByIPURL = "ips/";
+  searchByMACURL = "macs/";
 
   constructor(private http: HttpClient) { }
 
@@ -129,6 +130,35 @@ export class SearchComponent implements OnInit {
       }
 
       this.http.post(this.proxyURL + this.currentSLAURL + this.searchByIPURL + toSearchByIP, this.formJSONforIPMACSearch(), {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': this.currentToken
+        })
+      }).toPromise().then((data: any) => {
+        var receivedIPSearchJSON = data;
+        if (receivedIPSearchJSON == data && data != "[]") {
+          this.areResultsFound = true
+        }
+
+        this.parsedIPSearchJSON = this.parseReceivedData(receivedIPSearchJSON);
+        // console.log(this.parsedIPSearchJSON);
+      });
+
+    }
+  }
+
+  searchByMAC() {
+    if (this.isAuth == true) {
+
+      // search for all results if field is empty
+      if (this.inputToSearchByMAC == null || this.inputToSearchByMAC == "") {
+        var toSearchByMAC = "all";
+      }
+      else {
+        toSearchByMAC = this.inputToSearchByMAC;
+      }
+
+      this.http.post(this.proxyURL + this.currentSLAURL + this.searchByMACURL + toSearchByMAC, this.formJSONforIPMACSearch(), {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': this.currentToken
