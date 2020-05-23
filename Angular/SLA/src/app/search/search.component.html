@@ -166,6 +166,9 @@
                     <input [matDatepicker]="myDatepicker">
                     <mat-datepicker #myDatepicker></mat-datepicker>
                 </div> -->
+
+                
+
                 <div>
 
                 </div>
@@ -192,11 +195,11 @@
     <div>
 
 
-        <table class="generalTable">
+        <!-- <table class="generalTable">
             <tbody>
                 <tr>
                     <th>Model</th>
-                    <th>MACs found</th>
+                    <th>IPs found</th>
                     <th>List</th>
                 </tr>
                 <tr>
@@ -209,6 +212,38 @@
 
             </tbody>
 
+        </table> -->
+
+        <table mat-table [dataSource]="tableDataToShow">
+            ...
+        
+            <!-- Model Column -->
+            <ng-container matColumnDef="Model">
+                <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Model}} </mat-cell>
+            </ng-container>
+
+            <!-- IPs Column -->
+            <ng-container matColumnDef="IPs">
+                <mat-header-cell *matHeaderCellDef> IPs found </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.IPs}} </mat-cell>
+            </ng-container>
+
+            <!-- show Column -->
+            <ng-container matColumnDef="List">
+                <mat-header-cell *matHeaderCellDef> List </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+
+                    <a>
+                        <button class="btn btn-primary right btn-fit" (click)="showDevicesList(element.List)">Show</button>
+                    </a> 
+
+                </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            
         </table>
 
     </div>

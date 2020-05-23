@@ -103,6 +103,6 @@ export class AppComponent {
   private loadMainPage() {
 
     this.hideLoginForm();
-    this.getFirmwareData();
+    //this.getFirmwareData();
   }
 }

@@ -3,12 +3,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { group } from '@angular/animations';
+import { MatTableModule } from '@angular/material/table';
+
+
+export interface tableIPMACSearch {
+  Model: string;
+  IPs: number;
+  List: string;
+}
+
+const TEST_TABLE_DATA: tableIPMACSearch[] = [
+  {Model: 'DIR-8', IPs: 10, List: "1"},
+  {Model: 'DIR-77', IPs: 20, List: "2"},
+  {Model: 'DIR-666', IPs: 5, List: "3"},
+];
+
+const TABLE_DATA: tableIPMACSearch[] = [];
+
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
 export class SearchComponent implements OnInit {
 
   inputToSearchByIP: string = null;
@@ -31,6 +49,9 @@ export class SearchComponent implements OnInit {
 
   // receivedIPSearchJSON: string;
   parsedIPMACSearchJSON: object;
+  // data for table with results
+  tableDataToShow;
+  displayedColumns: string[] = ['Model', 'IPs', 'List'];
   // is Authorization complete
   @Input() isAuth: boolean;
 
@@ -134,9 +155,13 @@ export class SearchComponent implements OnInit {
           })
         }).toPromise().then((data: any) => {
           var receivedIPSearchJSON = data;
-          if (receivedIPSearchJSON == data && data != "[]") {
-            this.areResultsFound = true
+          if (receivedIPSearchJSON.length == 0) {
+            alert("Nothing found by IP");
+          }
+          else if (receivedIPSearchJSON.length >= 0) {
+            this.areResultsFound = true;
             this.showSearchResults(receivedIPSearchJSON);
+            // alert(receivedIPSearchJSON.length + " Results found");
           }
         });
       }
@@ -161,7 +186,10 @@ export class SearchComponent implements OnInit {
         })
       }).toPromise().then((data: any) => {
         var receivedMACSearchJSON = data;
-        if (receivedMACSearchJSON == data && data != "[]") {
+        if (receivedMACSearchJSON.length == 0) {
+          alert("Nothing found by MAC");  
+        }
+        else if (receivedMACSearchJSON.length >= 0) {
           this.areResultsFound = true
           this.showSearchResults(receivedMACSearchJSON);
         }
@@ -183,6 +211,16 @@ export class SearchComponent implements OnInit {
     // console.log(models);
     // console.log("Models total: " + models.length);
 
+    this.prepareTableDataToShow(receivedIPMACSearchJSON, models);
+  }
+
+  prepareTableDataToShow(receivedData: any, models: any){
+
+    // for test
+    this.tableDataToShow = TEST_TABLE_DATA;
+
+    // // for prod
+    // this.tableDataToShow = TABLE_DATA;
   }
 
   parseReceivedData(dataToParse: any) {
@@ -202,6 +240,8 @@ export class SearchComponent implements OnInit {
 
   }
 
-  showDevicesList() { }
+  showDevicesList(listNumberToShow: Number) {
+    // console.log(listNumberToShow);
+  }
 
 }
