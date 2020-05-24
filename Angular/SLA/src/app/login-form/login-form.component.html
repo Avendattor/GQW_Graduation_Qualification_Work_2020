@@ -1,4 +1,4 @@
-<div class="centerLogin">
+<!-- <div class="centerLogin"> -->
     <!-- 
     <form> 
         <label>
@@ -30,7 +30,7 @@
 
     
     <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
-    <form  (ngSubmit)="logIn()">
+    <!-- <form  (ngSubmit)="logIn()">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" (input)="usernameInput($event)" (keyup.enter)="logIn()" #login formControlName="username" class="form-control" />
@@ -53,11 +53,40 @@
             <span *ngIf="loginProcess" class="spinner-border spinner-border-sm mr-1"></span>
             Login
         </button>
-    </div>
+    </div> -->
 
     
-</div>
+    
+<!-- </div> -->
+<div class="pad30 widthauto login-div">
+    <mat-card>
+        <div>
+            <mat-form-field appearance="fill" class="widthauto">
+                <mat-label>Username</mat-label>
+                <input matInput (input)="usernameInput($event)">
+                <button mat-icon-button matSuffix (click)="inputTestLogin('test','test')">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hidelogin ? 'password' : 'text'" (input)="passwordInput($event)">
+                <button mat-icon-button matSuffix (click)="hidelogin = !hidelogin" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidelogin">
+                <mat-icon>{{hidelogin ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
 
+            </mat-form-field>
+        </div>
+        <div class="right">
+            <button (click)="logIn()" mat-button color="primary">
+                <span *ngIf="loginProcess"></span>
+                Login
+            </button>
+        </div>
+    </mat-card>
+</div>
 
 <!-- <div class="center">
     <pre>

@@ -15,6 +15,7 @@ export class LoginFormComponent implements OnInit {
   inputUserName: string = '';
   inputPassword: string;
   hashedPassword;
+  hidelogin = true;
 
   loginURL = "login";
   @Input() proxyURL: string = '';
@@ -47,6 +48,11 @@ export class LoginFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
+
+  inputTestLogin(inputLogin, inputPassword){
+    this.inputUserName = inputLogin;
+    this.inputPassword = inputPassword;
+  }
 
   usernameInput(event: any) {
     const value = event.target.value

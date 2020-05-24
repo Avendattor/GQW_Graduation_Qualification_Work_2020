@@ -267,8 +267,8 @@ export class SearchComponent implements OnInit {
 
   }
 
-  showDevicesList(listNumberToShow: Number) {
-    // console.log(listNumberToShow);
+  showDevicesList(modelsGroupToShow: Number) {
+    // console.log(modelsGroupToShow);
   }
 
 }

@@ -28,6 +28,7 @@ export class MainTopComponent implements OnInit {
   @Input() proxyURL = '';
   @Input() currentSLAURL = '';
 
+  panelOpenState = false;
 
   getTotalDevices() {
     if (this.isAuth == true) {

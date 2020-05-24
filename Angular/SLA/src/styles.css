@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+@import './purple-green_custom.css';
 
 body {
   font-family: "Roboto", sans-serif;
   margin: 0px;
-  background-color: #222226 !important;
+  background-color: #222226;
 }
 
 :root {
@@ -75,11 +75,11 @@ pre {
 
 } */
 
-input{
+/* input{
   background-color: #444446 !important;
   color: #fff!important;
 
-}
+} */
 
 /* .div-inline{
   display: inline
@@ -124,4 +124,22 @@ tr {
   float: right;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+
+.pad30 {
+  padding: 30px;
+}
+
+.widthauto{
+  width: auto;
+}
+
+.login-div {
+  margin: auto;
+  width: 266px;
+  max-width: 98%;
+}

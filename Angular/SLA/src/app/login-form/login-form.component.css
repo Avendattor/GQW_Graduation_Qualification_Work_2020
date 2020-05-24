@@ -4,7 +4,7 @@
   margin: auto;
   width: 90%;
   max-width: 400px;
-  background-color: #444446 !important;
+  background-color: #444446;
 
   border: 1px #cccccc;
 
@@ -24,9 +24,9 @@ label{
     color: #fff!important;
 }
 
-input{
+/* input{
     background-color: #444446 !important;
     color: #fff!important;
 
-}
+} */
 
