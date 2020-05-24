@@ -14,6 +14,7 @@ import { MainTopComponent } from './main-top/main-top.component';
 import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
