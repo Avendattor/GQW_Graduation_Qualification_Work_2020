@@ -13,12 +13,12 @@ export interface tableIPMACSearch {
 }
 
 const TEST_TABLE_DATA: tableIPMACSearch[] = [
-  {Model: 'DIR-8', IPs: 10, List: "1"},
-  {Model: 'DIR-77', IPs: 20, List: "2"},
-  {Model: 'DIR-666', IPs: 5, List: "3"},
+  { Model: 'DIR-8', IPs: 10, List: "param1" },
+  { Model: 'DIR-77', IPs: 20, List: "param2" },
+  { Model: 'DIR-666', IPs: 5, List: "param3" },
 ];
 
-const TABLE_DATA: tableIPMACSearch[] = [];
+var TABLE_DATA: tableIPMACSearch[] = [];
 
 
 @Component({
@@ -51,7 +51,11 @@ export class SearchComponent implements OnInit {
   parsedIPMACSearchJSON: object;
   // data for table with results
   tableDataToShow;
-  displayedColumns: string[] = ['Model', 'IPs', 'List'];
+  displayedColumns: string[] = [
+    'Model',
+    'IPs',
+    // 'List'
+  ];
   // is Authorization complete
   @Input() isAuth: boolean;
 
@@ -187,17 +191,17 @@ export class SearchComponent implements OnInit {
       }).toPromise().then((data: any) => {
         var receivedMACSearchJSON = data;
         if (receivedMACSearchJSON.length == 0) {
-          alert("Nothing found by MAC");  
+          alert("Nothing found by MAC");
         }
         else if (receivedMACSearchJSON.length >= 0) {
-          this.areResultsFound = true
           this.showSearchResults(receivedMACSearchJSON);
+          this.areResultsFound = true;
         }
       });
     }
   }
 
-  showSearchResults(receivedIPMACSearchJSON){
+  showSearchResults(receivedIPMACSearchJSON) {
     this.parsedIPMACSearchJSON = this.parseReceivedData(receivedIPMACSearchJSON);
     // console.log(this.parsedIPSearchJSON);
 
@@ -214,13 +218,36 @@ export class SearchComponent implements OnInit {
     this.prepareTableDataToShow(receivedIPMACSearchJSON, models);
   }
 
-  prepareTableDataToShow(receivedData: any, models: any){
+  prepareTableDataToShow(receivedData: any, models: any) {
 
-    // for test
-    this.tableDataToShow = TEST_TABLE_DATA;
+    // // for test
+    // this.tableDataToShow = TEST_TABLE_DATA;
 
-    // // for prod
-    // this.tableDataToShow = TABLE_DATA;
+    // for prod
+    for (var i = 0, lenModels = models.length; i < lenModels; i++) {
+
+      var numberOfIPs: number = 0;
+
+      // counting devices (IPs) quantity
+      for (var j = 0, len = receivedData.length; j < len; j++) {
+        if (receivedData[i].model == models[i]) {
+          numberOfIPs++;
+        }
+      }
+
+      // filling one table row
+      TABLE_DATA[i] = {
+        Model: models[i],
+        IPs: numberOfIPs,
+        List: models[i]
+      }
+
+      numberOfIPs = 0;
+    }
+    this.tableDataToShow = TABLE_DATA;
+
+    // necessary for table update on each search
+    TABLE_DATA = []
   }
 
   parseReceivedData(dataToParse: any) {
