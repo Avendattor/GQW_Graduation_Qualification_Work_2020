@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import './purple-green_custom.css';
+@import "./purple-green_custom.css";
 
 body {
   font-family: "Roboto", sans-serif;
@@ -10,63 +10,46 @@ body {
 }
 
 :root {
-    --primary: #0087a9;
-    --blue: #0087a9;
+  --primary: #0087a9;
+  --blue: #0087a9;
 }
-
-
 
 .center-wide {
   margin: auto;
   width: 80%;
-  max-width: 98%;
-  background-color: #444446 !important;
-    color: #fff!important;
-
-  border: 1px #cccccc;
-
-  padding: 25px;
-
+  max-width: 790px;
   margin-top: 20px;
-  margin-bottom: 20px;
-
-  border-radius: 4px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  /* margin-bottom: 20px; */
 }
 
-.right{
-    text-align: right;
+.right {
+  text-align: right;
 }
 
 pre {
-    background-color: #444446 !important;
-    color: #fff!important;
+  background-color: #444446 !important;
+  color: #fff !important;
 }
 
-.div-button{
-    align-content: stretch;
-    
-    
+.div-button {
+  align-content: stretch;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #0087a9;
-    border-color: #0087a9;
-    margin-left: 15px;
-    /* margin-right: 5px; 
+  color: #fff;
+  background-color: #0087a9;
+  border-color: #0087a9;
+  margin-left: 15px;
+  /* margin-right: 5px; 
     margin-right: 15px; */
-    position: relative;
-    
-    
-  }
+  position: relative;
+}
 
-.div-between-buttons{
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    height: 38px;
+.div-between-buttons {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  height: 38px;
 }
 
 /* .form-control{
@@ -93,17 +76,18 @@ pre {
   display: block
 } */
 
-.generalTable{
+.generalTable {
   width: 100%;
   background-color: #444446 !important;
-  color: #fff!important;
+  color: #fff !important;
 }
 
 td {
   color: rgba(255, 255, 255, 0.8);
 }
 
-td, th {
+td,
+th {
   padding: 5px 5px;
   display: table-cell;
   text-align: left;
@@ -112,29 +96,31 @@ td, th {
   border-color: rgb(236, 236, 236);
 }
 
-tr.last{
-  border: none
+tr.last {
+  border: none;
 }
 
 tr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.float-right{
+.float-right {
   float: right;
 }
-html, body { height: 100%; }
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
+html,
+body {
+  height: 100%;
 }
-
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .pad30 {
   padding: 30px;
 }
 
-.widthauto{
+.widthauto {
   width: auto;
 }
 
@@ -142,4 +128,30 @@ body {
   margin: auto;
   width: 266px;
   max-width: 98%;
+}
+
+.w150px {
+  width: 150px;
+}
+
+.mat-form-field.ip-mac-search-filter {
+  width: 100%;
+  max-width: 230px;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+
+.mat-form-field.ip-mac-search {
+  width: 100%;
+  max-width: 356px;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+
+div.center-wide + div.center-wide {
+  padding: 25px;
+}
+
+.mat-exp-panel {
+  padding-bottom: 20px;
 }

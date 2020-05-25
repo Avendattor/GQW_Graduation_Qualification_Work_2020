@@ -1,5 +1,5 @@
 <!-- <div class="centerLogin"> -->
-    <!-- 
+<!-- 
     <form> 
         <label>
             Username
@@ -28,9 +28,9 @@
 
 
 
-    
-    <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
-    <!-- <form  (ngSubmit)="logIn()">
+
+<!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
+<!-- <form  (ngSubmit)="logIn()">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" (input)="usernameInput($event)" (keyup.enter)="logIn()" #login formControlName="username" class="form-control" />
@@ -55,8 +55,8 @@
         </button>
     </div> -->
 
-    
-    
+
+
 <!-- </div> -->
 <div class="pad30 widthauto login-div">
     <mat-card>
@@ -73,16 +73,17 @@
             <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput [type]="hidelogin ? 'password' : 'text'" (input)="passwordInput($event)">
-                <button mat-icon-button matSuffix (click)="hidelogin = !hidelogin" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidelogin">
-                <mat-icon>{{hidelogin ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <button mat-icon-button matSuffix (click)="hidelogin = !hidelogin" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hidelogin">
+                    <mat-icon>{{hidelogin ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
 
             </mat-form-field>
         </div>
         <div *ngIf="loginProcess">
-            <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>
-            
+
         <div class="right">
             <button *ngIf="!loginProcess" (click)="logIn()" mat-button color="primary">
                 <!-- <span *ngIf="loginProcess"></span> -->
@@ -91,11 +92,3 @@
         </div>
     </mat-card>
 </div>
-
-
-
-<!-- <div class="center">
-    <pre>
-        {{receivedJSON}}
-    </pre>
-</div> -->

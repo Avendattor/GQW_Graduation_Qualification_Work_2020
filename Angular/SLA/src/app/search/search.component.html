@@ -1,255 +1,153 @@
 <div class="center-wide">
-    <h3>Search</h3>
-
-    <div class="div-inline">
-        <div class="form-group">
-
-            <div>
-                <div class="form-group">
-                    <div>
-                        <label>
-                            Search by IP
-                            <!-- [{{input_searchByIP}}]  -->
-                        </label>
-                    </div>
-                    <div>
-                        <div class="d-inline-block searchFormIPMAC">
-
-                            <input type="text" class="form-control inputSearchIPMAC" maxlength="15"
-                                placeholder="0.0.0.0" (input)="searchByIPInput($event)" />
-
-                        </div>
-
-                        <div class="float-right">
-                            <button class="btn btn-primary" (click)="searchByIP()">Search</button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>
-                            Search by MAC
-                            <!-- [{{ inputToSearchByMAC }}] -->
-                        </label>
-                    </div>
-                    <div class="d-inline-block searchFormIPMAC">
-                        <input type="text" class="form-control inputSearchIPMAC" maxlength="17"
-                            placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)" />
-                    </div>
-                    <div class="float-right">
-                        <button class="btn btn-primary" (click)="searchByMAC()">Search</button>
-                    </div>
-
-                </div>
-            </div>
+    <div class="mat-exp-panel">
 
 
-        </div>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Search devices
+                </mat-panel-title>
+                <mat-panel-description></mat-panel-description>
+            </mat-expansion-panel-header>
 
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search">
+                <mat-label>IP</mat-label>
+                <input matInput maxlength="15" placeholder="0.0.0.0" (input)="searchByIPInput($event)">
+                <button mat-icon-button matSuffix (click)="searchByIP()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search">
+                <mat-label>MAC</mat-label>
+                <input matInput maxlength="17" placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)">
+                <button mat-icon-button matSuffix (click)="searchByMAC()">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <!-- <button (click)="searchByMACInput('all')" mat-button color="primary" class="widthauto ip-mac-search-filter">
+                Show all devices
+            </button> -->
+
+        </mat-expansion-panel>
+    </div>
+
+    <div class="mat-exp-panel">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Filters for search
+                </mat-panel-title>
+                <mat-panel-description></mat-panel-description>
+            </mat-expansion-panel-header>
+            <!-- place for filter inputs -->
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>DROP ≥</mat-label>
+                <input matInput (input)="SearchFilterDROP($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>CRC ≥</mat-label>
+                <input matInput (input)="SearchFilterCRC($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Fragments ≥</mat-label>
+                <input matInput (input)="SearchFilterFragments($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Link down ≥</mat-label>
+                <input matInput (input)="SearchFilterLinkDown($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>64bytes ≥</mat-label>
+                <input matInput (input)="SearchFilter64bytes($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Device model</mat-label>
+                <input matInput (input)="SearchFilterDeviceModel($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Device software</mat-label>
+                <input matInput (input)="SearchFilterDeviceSoftware($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Serial number</mat-label>
+                <input matInput (input)="SearchFilterSerialNumber($event)">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Less from this day</mat-label>
+                <input matInput (input)="SearchFilterLFTD($event)" placeholder="YYYY-MM-DD">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>More from this day</mat-label>
+                <input matInput (input)="SearchFilterMFTD($event)" placeholder="YYYY-MM-DD">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Less from this day</mat-label>
+                <input matInput [matDatepicker]="pickerLFTD" (input)="SearchFilterLFTD($event)"
+                    placeholder="YYYY-MM-DD">
+                <mat-datepicker-toggle matSuffix [for]="pickerLFTD"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerLFTD></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="widthauto ip-mac-search-filter">
+                <mat-label>Less from this day</mat-label>
+                <input matInput [matDatepicker]="pickerMFTD" (input)="SearchFilterLFTD($event)"
+                    placeholder="YYYY-MM-DD">
+                <mat-datepicker-toggle matSuffix [for]="pickerMFTD"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #pickerMFTD></mat-datepicker>
+            </mat-form-field>
+
+
+        </mat-expansion-panel>
     </div>
 
 
-    <h3>Filter</h3>
+    <div class="mat-exp-panel">
+        <mat-expansion-panel *ngIf="areResultsFound" [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Search results
+                </mat-panel-title>
+                <mat-panel-description></mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <table mat-table [dataSource]="tableDataToShow">
+                ...
+
+                <!-- Model Column -->
+                <ng-container matColumnDef="Model">
+                    <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Model}} </mat-cell>
+                </ng-container>
+
+                <!-- number of devices Column -->
+                <ng-container matColumnDef="IPs">
+                    <mat-header-cell *matHeaderCellDef> Results found </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <a>
+                            <button (click)="showDevicesList(element.Model)" mat-button color="primary">
+                                Show ({{element.IPs}})
+                            </button>
+                        </a>
+                    </mat-cell>
+                </ng-container>
 
 
-    <div class="div-inline">
-        <div class="form-group">
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-            <div>
-                <div class="form-group">
-                    <div>
-                        <label>
-                            DROP ≥
-                            <!-- [{{input_searchByIP}}]  -->
-                        </label>
-                    </div>
-                    <div>
-                        <div class="d-inline-block w-100">
-
-                            <input type="text" class="form-control" (input)="SearchFilterDROP($event)" />
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>CRC ≥</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterCRC($event)" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>Fragments ≥</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterFragments($event)" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>Link down ≥</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterLinkDown($event)" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>64bytes ≥</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilter64bytes($event)" />
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    <div>
-                        <label>Device model</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterDeviceModel($event)" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>Device software</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterDeviceSoftware($event)" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>Serial number</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterSerialNumber($event)" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>Less from this day</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterLFTD($event)"
-                            placeholder="YYYY-MM-DD" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label>More from this day</label>
-                    </div>
-                    <div class="d-inline-block w-100">
-                        <input type="text" class="form-control" (input)="SearchFilterMFTD($event)"
-                            placeholder="YYYY-MM-DD" />
-                    </div>
-                </div>
-
-                <!-- <div>
-                    <input [matDatepicker]="myDatepicker">
-                    <mat-datepicker #myDatepicker></mat-datepicker>
-                </div> -->
-
-
-
-                <div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
+            </table>
+        </mat-expansion-panel>
     </div>
-
-
-    <div class="div-button text-right">
-
-        <!-- <button  class="btn btn-primary">Filter</button> -->
-
-        <!-- <button class="btn btn-primary" (click)="clearAllFields()">Clear all fields</button> -->
-
-    </div>
-</div>
-
-<div *ngIf="areResultsFound" class="center-wide">
-    <h3>Results found</h3>
-    <div>
-
-
-        <!-- <table class="generalTable">
-            <tbody>
-                <tr>
-                    <th>Model</th>
-                    <th>IPs found</th>
-                    <th>List</th>
-                </tr>
-                <tr>
-                    <td>*model*</td>
-                    <td>*MACs*</td>
-                    <td>
-                        <button class="btn btn-primary right btn-fit" (click)="showDevicesList()">Show</button>
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table> -->
-
-        <table mat-table [dataSource]="tableDataToShow">
-            ...
-
-            <!-- Model Column -->
-            <ng-container matColumnDef="Model">
-                <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.Model}} </mat-cell>
-            </ng-container>
-
-            <!-- IPs Column -->
-            <ng-container matColumnDef="IPs">
-                <mat-header-cell *matHeaderCellDef> IPs found </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <a>
-                        <button class="btn btn-primary right btn-fit" (click)="showDevicesList(element.Model)">Show
-                            results ({{element.IPs}})</button>
-                    </a>
-                </mat-cell>
-            </ng-container>
-
-            <!-- show Column -->
-            <!-- <ng-container matColumnDef="List">
-                <mat-header-cell *matHeaderCellDef> List </mat-header-cell>
-                <mat-cell *matCellDef="let element"> 
-
-                    <a>
-                        <button class="btn btn-primary right btn-fit" (click)="showDevicesList(element.List)">Show results: {{element.IPs}}</button>
-                    </a> 
-
-                </mat-cell>
-            </ng-container> -->
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-        </table>
-
-    </div>
-</div>

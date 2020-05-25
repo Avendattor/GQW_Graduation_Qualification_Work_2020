@@ -2,6 +2,17 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
+export interface GeneralTable {
+  name: string;
+  data: any;
+}
+
+var GENERAL_TABLE_DATA: GeneralTable[] = [
+  { name: 'Current login', data: '' },
+  { name: 'Last hour reports', data: '' },
+  { name: 'Devices in total', data: '' },
+];
+
 @Component({
   selector: 'app-main-top',
   templateUrl: './main-top.component.html',
@@ -13,6 +24,13 @@ export class MainTopComponent implements OnInit {
   // stringifiedJSON;
   totalDevices: string = '';
   totalDevicesURL = "/info/totalDevices";
+
+  // data for main table
+  generalTableDataToShow;
+  displayedColumnsGeneralInfo: string[] = [
+    'name',
+    'data'
+  ];
 
   timestamp: number;
   reportsLastHour = '';
@@ -42,7 +60,7 @@ export class MainTopComponent implements OnInit {
         //console.log("TD");
         this.totalDevices = data.length;
         // this.stringifiedJSON = JSON.stringify(data.receivedJSON);
-
+        GENERAL_TABLE_DATA[2].data = data.length;
       });
     }
   }
@@ -58,7 +76,7 @@ export class MainTopComponent implements OnInit {
       }).toPromise().then((data: any) => {
         this.reportsLastHour = data;
         // this.stringifiedJSON = JSON.stringify(data.receivedJSON);
-
+        GENERAL_TABLE_DATA[1].data = data;
       });
     }
   }
@@ -70,10 +88,22 @@ export class MainTopComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  fillGeneralTable() {
+    GENERAL_TABLE_DATA = [
+      { name: 'Current login', data: this.curLogin },
+      { name: 'Last hour reports', data: this.reportsLastHour },
+      { name: 'Devices in total', data: this.totalDevices },
+    ];
+
+
+    this.generalTableDataToShow = GENERAL_TABLE_DATA;
+  }
+
   ngOnInit(): void {
     if (this.isAuth == true) {
       this.getTotalDevices();
       this.getLastHourReports();
+      this.fillGeneralTable();
     }
 
   }
