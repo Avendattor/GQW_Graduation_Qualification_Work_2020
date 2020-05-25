@@ -79,14 +79,20 @@
 
             </mat-form-field>
         </div>
+        <div *ngIf="loginProcess">
+            <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+        </div>
+            
         <div class="right">
-            <button (click)="logIn()" mat-button color="primary">
-                <span *ngIf="loginProcess"></span>
+            <button *ngIf="!loginProcess" (click)="logIn()" mat-button color="primary">
+                <!-- <span *ngIf="loginProcess"></span> -->
                 Login
             </button>
         </div>
     </mat-card>
 </div>
+
+
 
 <!-- <div class="center">
     <pre>
