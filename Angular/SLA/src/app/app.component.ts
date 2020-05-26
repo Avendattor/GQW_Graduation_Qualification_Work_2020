@@ -22,8 +22,14 @@ export class AppComponent {
 
   isDebugActive = false;
 
-  // using proxy cause of CORS policy restrictions 
-  proxyURL = "https://cors-anywhere.herokuapp.com/";
+  // // using proxy cause of CORS policy restrictions 
+
+  // // free, 200 requests per 60 minutes limit
+  // proxyURL = "https://cors-anywhere.herokuapp.com/";
+
+  // // personally builded & hosted, no limit 
+  proxyURL = "https://stark-depths-37590.herokuapp.com/";
+
   testURL = "https://postman-echo.com/post/";
   currentSLAURL = "http://mysla.dlink.ru/api/";
 
