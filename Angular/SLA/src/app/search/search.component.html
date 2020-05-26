@@ -13,18 +13,33 @@
             <mat-form-field appearance="fill" class="widthauto ip-mac-search">
                 <mat-label>IP</mat-label>
                 <input matInput maxlength="15" placeholder="0.0.0.0" (input)="searchByIPInput($event)">
-                <button mat-icon-button matSuffix (click)="searchByIP()">
+
+                <button *ngIf="!(searchProgress)"  mat-icon-button matSuffix (click)="searchByIP()">
                     <mat-icon>search</mat-icon>
                 </button>
-            </mat-form-field>
 
+                <button *ngIf="searchProgress" mat-icon-button disabled class="transparent" matSuffix >
+                    <mat-icon>
+                         <mat-spinner  diameter="28"></mat-spinner>
+                    </mat-icon>
+                </button>
+
+            </mat-form-field>
 
             <mat-form-field appearance="fill" class="widthauto ip-mac-search">
                 <mat-label>MAC</mat-label>
                 <input matInput maxlength="17" placeholder="00:00:00:00:00:00" (input)="searchByMACInput($event)">
-                <button mat-icon-button matSuffix (click)="searchByMAC()">
+
+                <button *ngIf="!(searchProgress)" mat-icon-button matSuffix (click)="searchByMAC()">
                     <mat-icon>search</mat-icon>
                 </button>
+
+                <button *ngIf="searchProgress" mat-icon-button disabled class="transparent" matSuffix >
+                    <mat-icon>
+                         <mat-spinner  diameter="28"></mat-spinner>
+                    </mat-icon>
+                </button>
+
             </mat-form-field>
 
             <!-- <button (click)="searchByMACInput('all')" mat-button color="primary" class="widthauto ip-mac-search-filter">
@@ -120,11 +135,12 @@
                 <mat-panel-title>
                     Search results
                 </mat-panel-title>
-                <mat-panel-description></mat-panel-description>
+                <mat-panel-description>
+                    {{receivedIPMACSearchJSON.length}} device{{generateEndingOfTheWord(receivedIPMACSearchJSON)}} of {{models.length}} model{{generateEndingOfTheWord(models)}}
+                </mat-panel-description>
             </mat-expansion-panel-header>
 
             <table mat-table [dataSource]="tableDataToShow">
-                ...
 
                 <!-- Model Column -->
                 <ng-container matColumnDef="Model">
@@ -134,11 +150,11 @@
 
                 <!-- number of devices Column -->
                 <ng-container matColumnDef="IPs">
-                    <mat-header-cell *matHeaderCellDef> Results found </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> {{currentResultsType}}s found </mat-header-cell>
                     <mat-cell *matCellDef="let element">
                         <a>
                             <button (click)="showDevicesList(element.Model)" mat-button color="primary">
-                                Show ({{element.IPs}})
+                                Show ({{element.IPs}}) 
                             </button>
                         </a>
                     </mat-cell>

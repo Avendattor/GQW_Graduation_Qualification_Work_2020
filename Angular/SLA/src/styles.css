@@ -155,3 +155,8 @@ div.center-wide + div.center-wide {
 .mat-exp-panel {
   padding-bottom: 20px;
 }
+
+.transparent {
+  color: transparent;
+  background: transparent;
+}

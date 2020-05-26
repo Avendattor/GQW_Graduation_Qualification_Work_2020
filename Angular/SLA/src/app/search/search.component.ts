@@ -32,7 +32,10 @@ export class SearchComponent implements OnInit {
   inputToSearchByIP: string = null;
   inputToSearchByMAC: string;
 
+  currentSearchType: string;
   areResultsFound: boolean = false;
+
+  models;
 
   IPMACFilterSearch: object = [
     null,
@@ -47,7 +50,7 @@ export class SearchComponent implements OnInit {
     null
   ];
 
-  // receivedIPSearchJSON: string;
+  receivedIPMACSearchJSON;
   parsedIPMACSearchJSON: object;
   // data for table with results
   tableDataToShow;
@@ -65,6 +68,12 @@ export class SearchComponent implements OnInit {
   @Input() currentSLAURL;
   searchByIPURL = "ips/";
   searchByMACURL = "macs/";
+
+  // search type: IP or MAC, needed for results table
+  currentResultsType: string = '';
+
+  // indicates search process (for spinner)
+  searchProgress: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -145,6 +154,8 @@ export class SearchComponent implements OnInit {
   searchByIP() {
     // console.log(`Token: `+this.currentToken)
     if (this.isAuth == true) {
+      this.currentSearchType = 'IP';
+      this.searchProgress = true;
 
       // search for all results if field is empty
       if (this.inputToSearchByIP == null || this.inputToSearchByIP == "") {
@@ -161,10 +172,11 @@ export class SearchComponent implements OnInit {
           var receivedIPSearchJSON = data;
           if (receivedIPSearchJSON.length == 0) {
             alert("Nothing found by IP");
+            this.searchProgress = false;
           }
           else if (receivedIPSearchJSON.length >= 0) {
-            this.areResultsFound = true;
             this.showSearchResults(receivedIPSearchJSON);
+            this.areResultsAreFound(true, 0);
             // alert(receivedIPSearchJSON.length + " Results found");
           }
         });
@@ -174,7 +186,8 @@ export class SearchComponent implements OnInit {
 
   searchByMAC() {
     if (this.isAuth == true) {
-
+      this.searchProgress = true;
+      this.currentSearchType = 'MAC';
       // search for all results if field is empty
       if (this.inputToSearchByMAC == null || this.inputToSearchByMAC == "") {
         var toSearchByMAC = "all";
@@ -192,20 +205,48 @@ export class SearchComponent implements OnInit {
         var receivedMACSearchJSON = data;
         if (receivedMACSearchJSON.length == 0) {
           alert("Nothing found by MAC");
+          this.searchProgress = false;
+          this.areResultsAreFound(false, 100);
         }
         else if (receivedMACSearchJSON.length >= 0) {
           this.showSearchResults(receivedMACSearchJSON);
-          this.areResultsFound = true;
+          this.areResultsAreFound(true, 1);
         }
       });
     }
   }
 
+  areResultsAreFound(areFound: boolean, type: number) {
+    if (areFound == true) {
+      switch (type) {
+
+        // IP search
+        case 0:
+          this.currentResultsType = 'IP';
+          break;
+
+        // MAC search
+        case 1:
+          this.currentResultsType = 'MAC';
+          break;
+
+        default:
+          break;
+      }
+      this.areResultsFound = true;
+      this.searchProgress = false;
+
+    } else if (areFound == false) {
+      this.areResultsFound = false;
+    }
+  }
+
   showSearchResults(receivedIPMACSearchJSON) {
     this.parsedIPMACSearchJSON = this.parseReceivedData(receivedIPMACSearchJSON);
+    this.receivedIPMACSearchJSON = receivedIPMACSearchJSON;
     // console.log(this.parsedIPSearchJSON);
 
-    const models = receivedIPMACSearchJSON.reduce((models, parsedArrayItem, index, array) => {
+    this.models = receivedIPMACSearchJSON.reduce((models, parsedArrayItem, index, array) => {
       if (!models.find(model => parsedArrayItem.model.toString() === model)) {
         models.push(parsedArrayItem.model.toString())
       }
@@ -215,7 +256,7 @@ export class SearchComponent implements OnInit {
     // console.log(models);
     // console.log("Models total: " + models.length);
 
-    this.prepareTableDataToShow(receivedIPMACSearchJSON, models);
+    this.prepareTableDataToShow(receivedIPMACSearchJSON, this.models);
   }
 
   prepareTableDataToShow(receivedData: any, models: any) {
@@ -268,7 +309,16 @@ export class SearchComponent implements OnInit {
   }
 
   showDevicesList(modelsGroupToShow: Number) {
-    // console.log(modelsGroupToShow);
+    console.log(modelsGroupToShow);
   }
 
+  generateEndingOfTheWord(dataToProccess) {
+    if (dataToProccess.length == 1 || dataToProccess.length == -1) {
+      return '';
+    }
+
+    else {
+      return 's';
+    }
+  }
 }
