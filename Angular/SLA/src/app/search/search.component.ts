@@ -1,4 +1,5 @@
 import { SharedService } from "../search/shared/shared.service";
+import { ResultDialogComponent } from "./result-dialog/result-dialog.component";
 
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -328,7 +329,7 @@ export class SearchComponent implements OnInit {
   }
 
   openResultDialog(dataToShow) {
-    const dialogRef = this.dialog.open(SearchResultDialogComponent);
+    const dialogRef = this.dialog.open(ResultDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -351,28 +352,4 @@ export class SearchComponent implements OnInit {
       return 's';
     }
   }
-}
-
-@Component({
-  selector: 'search-result-dialog.component',
-  templateUrl: 'search-result-dialog.component.html',
-})
-export class SearchResultDialogComponent {
-
-  // shared data for serach results dialog
-  searchResultsForDialogMAC;
-  searchResultsForDialogIP;
-
-  constructor(
-    private sharedService: SharedService,
-  ) { }
-
-  ngOnInit() {
-    this.sharedService.sharedMessage.subscribe(message => this.searchResultsForDialogMAC = message);
-  }
-
-  newMessage() {
-    this.sharedService.nextMessage("message from dialog");
-  }
-
 }

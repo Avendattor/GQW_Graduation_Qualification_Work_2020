@@ -22,8 +22,9 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainTopComponent } from './main-top/main-top.component';
-import { SearchComponent, SearchResultDialogComponent } from './search/search.component';
+import { SearchComponent } from './search/search.component';
 import { SharedService } from "./search/shared/shared.service";
+import { ResultDialogComponent } from './search/result-dialog/result-dialog.component';
 
 
 
@@ -37,7 +38,7 @@ import { SharedService } from "./search/shared/shared.service";
     FooterComponent,
     MainTopComponent,
     SearchComponent,
-    SearchResultDialogComponent,
+    ResultDialogComponent,
   ],
   imports: [
     BrowserModule,
