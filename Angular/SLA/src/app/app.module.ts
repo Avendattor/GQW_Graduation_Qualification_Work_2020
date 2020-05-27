@@ -3,15 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { FooterComponent } from './footer/footer.component';
-import { MainTopComponent } from './main-top/main-top.component';
-import { SearchComponent } from './search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +14,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { FooterComponent } from './footer/footer.component';
+import { MainTopComponent } from './main-top/main-top.component';
+import { SearchComponent, SearchComponentResultDialog } from './search/search.component';
+
+
 
 
 
@@ -33,7 +35,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     LoginFormComponent,
     FooterComponent,
     MainTopComponent,
-    SearchComponent
+    SearchComponent,
+    SearchComponentResultDialog,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatNativeDateModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

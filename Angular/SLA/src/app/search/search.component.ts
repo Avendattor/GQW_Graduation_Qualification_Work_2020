@@ -4,6 +4,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { group } from '@angular/animations';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 
 export interface tableIPMACSearch {
@@ -75,7 +76,10 @@ export class SearchComponent implements OnInit {
   // indicates search process (for spinner)
   searchProgress: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void { }
 
@@ -310,6 +314,15 @@ export class SearchComponent implements OnInit {
 
   showDevicesList(modelsGroupToShow: Number) {
     console.log(modelsGroupToShow);
+    this.openResultDialog();
+  }
+
+  openResultDialog() {
+    const dialogRef = this.dialog.open(SearchComponentResultDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   generateEndingOfTheWord(dataToProccess) {
@@ -322,3 +335,9 @@ export class SearchComponent implements OnInit {
     }
   }
 }
+
+@Component({
+  selector: 'search.component-result-dialog',
+  templateUrl: 'search.component-result-dialog.html',
+})
+export class SearchComponentResultDialog {}
