@@ -22,7 +22,8 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainTopComponent } from './main-top/main-top.component';
-import { SearchComponent, SearchComponentResultDialog } from './search/search.component';
+import { SearchComponent, SearchResultDialogComponent } from './search/search.component';
+import { SharedService } from "./search/shared/shared.service";
 
 
 
@@ -36,7 +37,7 @@ import { SearchComponent, SearchComponentResultDialog } from './search/search.co
     FooterComponent,
     MainTopComponent,
     SearchComponent,
-    SearchComponentResultDialog,
+    SearchResultDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,7 @@ import { SearchComponent, SearchComponentResultDialog } from './search/search.co
     MatNativeDateModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

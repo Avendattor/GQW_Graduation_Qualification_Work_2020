@@ -1,3 +1,5 @@
+import { SharedService } from "../search/shared/shared.service";
+
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -76,12 +78,20 @@ export class SearchComponent implements OnInit {
   // indicates search process (for spinner)
   searchProgress: boolean = false;
 
+  // shared data for serach results dialog
+  searchResultsForDialogMAC;
+  searchResultsForDialogIP;
+
   constructor(
     private http: HttpClient,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private sharedService: SharedService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.sharedService.sharedMessage.subscribe(message => this.searchResultsForDialogMAC = message);
+
+  }
 
   searchByIPInput(event: any) {
     const value = event.target.value
@@ -313,16 +323,23 @@ export class SearchComponent implements OnInit {
   }
 
   showDevicesList(modelsGroupToShow: Number) {
-    console.log(modelsGroupToShow);
-    this.openResultDialog();
+    // console.log(modelsGroupToShow);
+    this.openResultDialog(modelsGroupToShow);
   }
 
-  openResultDialog() {
-    const dialogRef = this.dialog.open(SearchComponentResultDialog);
+  openResultDialog(dataToShow) {
+    const dialogRef = this.dialog.open(SearchResultDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
+
+    this.newMessage(dataToShow);
+    this.searchResultsForDialogMAC = dataToShow;
+  }
+
+  newMessage(dataToShow) {
+    this.sharedService.nextMessage(dataToShow)
   }
 
   generateEndingOfTheWord(dataToProccess) {
@@ -337,7 +354,25 @@ export class SearchComponent implements OnInit {
 }
 
 @Component({
-  selector: 'search.component-result-dialog',
-  templateUrl: 'search.component-result-dialog.html',
+  selector: 'search-result-dialog.component',
+  templateUrl: 'search-result-dialog.component.html',
 })
-export class SearchComponentResultDialog {}
+export class SearchResultDialogComponent {
+
+  // shared data for serach results dialog
+  searchResultsForDialogMAC;
+  searchResultsForDialogIP;
+
+  constructor(
+    private sharedService: SharedService,
+  ) { }
+
+  ngOnInit() {
+    this.sharedService.sharedMessage.subscribe(message => this.searchResultsForDialogMAC = message);
+  }
+
+  newMessage() {
+    this.sharedService.nextMessage("message from dialog");
+  }
+
+}
