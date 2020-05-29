@@ -3,7 +3,7 @@
 
 [Deploy server](https://sla-web.web.app/) 
 
-[NodeJS proxy](https://stark-depths-37590.herokuapp.com/)
+[CORS proxy](https://stark-depths-37590.herokuapp.com/)
 
 # Название: Разработка WEB-интерфейса SLA-сервера
 
