@@ -81,7 +81,12 @@ export class SearchComponent implements OnInit {
 
   // shared data for serach results dialog
   searchResultsForDialogMAC;
-  searchResultsForDialogIP;
+  
+  templateDialogJSON = {
+    allResults: "",
+    groupName: "",
+    resultsType: "",
+  };
 
   constructor(
     private http: HttpClient,
@@ -90,7 +95,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sharedService.sharedMessage.subscribe(message => this.searchResultsForDialogMAC = message);
+    this.sharedService.sharedSearchResultsJSON.subscribe(message => this.searchResultsForDialogMAC = message);
 
   }
 
@@ -323,24 +328,46 @@ export class SearchComponent implements OnInit {
 
   }
 
-  showDevicesList(modelsGroupToShow: Number) {
+  showDevicesList(modelsGroupToShow) {
     // console.log(modelsGroupToShow);
-    this.openResultDialog(modelsGroupToShow);
+    var JSON = this.makeJSONForDialog(this.receivedIPMACSearchJSON, modelsGroupToShow);
+
+    this.openResultDialog(JSON);
+  }
+
+  makeJSONForDialog(dataToProcessing, group) {
+    var proceedJSON = this.templateDialogJSON;
+
+    // var proceedJSON = dataToProcessing;
+
+    // for (var i = 0, len = dataToProcessing.length; i < len; i++) {
+    //   if (dataToProcessing[i].model = group ) {
+        
+    //   }
+    // }
+
+    proceedJSON.allResults = dataToProcessing;
+    proceedJSON.resultsType = this.currentResultsType;
+    proceedJSON.groupName = group;
+
+    return proceedJSON;
   }
 
   openResultDialog(dataToShow) {
+
+    this.sendDataToDialog(dataToShow);
+    // this.searchResultsForDialogMAC = dataToShow;
+
     const dialogRef = this.dialog.open(ResultDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
     });
 
-    this.newMessage(dataToShow);
-    this.searchResultsForDialogMAC = dataToShow;
   }
 
-  newMessage(dataToShow) {
-    this.sharedService.nextMessage(dataToShow)
+  sendDataToDialog(dataToSend) {
+    this.sharedService.updateJSON(dataToSend);
   }
 
   generateEndingOfTheWord(dataToProccess) {

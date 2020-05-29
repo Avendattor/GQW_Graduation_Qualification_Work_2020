@@ -4,13 +4,18 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class SharedService {
 
-  private searchResultsForDialogMAC = new BehaviorSubject('First Message');
-  sharedMessage = this.searchResultsForDialogMAC.asObservable();
+  private searchResultsForDialogMACJSON = new BehaviorSubject(
+    {
+      
+    }
+  );
+
+  sharedSearchResultsJSON = this.searchResultsForDialogMACJSON.asObservable();
 
   constructor() { }
 
-  nextMessage(message: string) {
-    this.searchResultsForDialogMAC.next(message)
+  updateJSON(JSON: object) {
+    this.searchResultsForDialogMACJSON.next(JSON)
   }
 
 }

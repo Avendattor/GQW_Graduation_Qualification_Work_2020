@@ -1,13 +1,63 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Devices of {{sharedData.groupName}}</h2>
 <mat-dialog-content class="mat-typography">
-    <h3>Develop across all platforms</h3>
-    <p>{{searchResultsForDialogMAC}}</p>
-    <button mat-button (click)="newMessage()">
-        change var
-    </button>
+    <!-- <pre>{{sharedDataStringified}}</pre> -->
+    <table mat-table [dataSource]="tableDialogDataToShow" class="generalTable">
 
+
+        <!--  Column -->
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef> {{sharedData.resultsType}} </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="bytes64">
+            <mat-header-cell *matHeaderCellDef>64bytes (max / date)</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.bytes64}} </mat-cell>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="crc">
+            <mat-header-cell *matHeaderCellDef>CRC (max / date)</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.crc}} </mat-cell>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="drop">
+            <mat-header-cell *matHeaderCellDef>DROP (max / date)</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.drop}} </mat-cell>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="fragments">
+            <mat-header-cell *matHeaderCellDef>Fragments (max / date)</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fragments}} </mat-cell>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="link_down">
+            <mat-header-cell *matHeaderCellDef>Link down (max / date)</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.link_down}} </mat-cell>
+        </ng-container>
+
+        <!--  Column -->
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <button mat-button (click)="showLogs(element.action.logs)">Show logs</button>
+            </mat-cell>
+        </ng-container>
+
+      
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </table>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
+    <!-- <button mat-button (click)="prepareTable()">Show table</button> -->
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
 </mat-dialog-actions>
