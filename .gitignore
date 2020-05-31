@@ -12,3 +12,7 @@ from_D-Link/test_WEB/
 
 # other Git repo for proxy
 /proxy/cors-anywhere/
+
+# temp doc files
+~$*.doc*
+~W*.tmp
