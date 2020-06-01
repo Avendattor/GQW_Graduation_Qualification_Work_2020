@@ -16,3 +16,6 @@ from_D-Link/test_WEB/
 # temp doc files
 ~$*.doc*
 ~W*.tmp
+
+# temp folder
+temp/
