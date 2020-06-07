@@ -15,6 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,6 +60,7 @@ import { ResultDialogComponent } from './search/result-dialog/result-dialog.comp
     MatProgressBarModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatTooltipModule,
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]
