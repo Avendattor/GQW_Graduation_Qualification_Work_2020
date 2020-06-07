@@ -5,8 +5,22 @@
 
 
 <mat-toolbar color="primary">
-    <div id="dlink-logo">
-    
+    <div *ngIf="!hideLogin" id="dlink-logo">
     </div>
+    <div *ngIf="hideLogin" id="dlink-logo-left">
+    </div>
+
+
+
+    <div *ngIf="hideLogin">
+        <span class="example-spacer"></span>
+        <a (click)="refresh()" class="pointer">
+             <mat-icon class="example-icon" aria-hidden="false" aria-label="exit_to_app">exit_to_app</mat-icon>
+        </a>
+           
+        
+        
+    </div>
+    
 </mat-toolbar>
     

@@ -160,3 +160,7 @@ div.center-wide + div.center-wide {
   color: transparent;
   background: transparent;
 }
+
+.pointer {
+  cursor: pointer
+}

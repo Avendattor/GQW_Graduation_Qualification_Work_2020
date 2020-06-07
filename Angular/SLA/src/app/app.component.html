@@ -1,5 +1,5 @@
 <div>
-  <app-top-bar></app-top-bar>
+  <app-top-bar [hideLogin]="hideLogin"></app-top-bar>
 </div>
 <div *ngIf="!hideLogin">
   <app-login-form 
