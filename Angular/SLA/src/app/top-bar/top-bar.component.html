@@ -1,7 +1,7 @@
 <div class="blue-dlink">
-    
+
 </div>
-    
+
 
 
 <mat-toolbar color="primary">
@@ -14,13 +14,21 @@
 
     <div *ngIf="hideLogin">
         <span class="example-spacer"></span>
-        <a (click)="refresh()" class="pointer" matTooltip="Log out from system" >
-             <mat-icon  class="example-icon" aria-hidden="false" aria-label="exit_to_app">exit_to_app</mat-icon>
+
+        <a class="pointer" matTooltip="Device search">
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="router">router</mat-icon>
         </a>
-           
-        
-        
+
+        <a class="pointer" matTooltip="Reports date search">
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="event_note">event_note</mat-icon>
+        </a>
+
+        <a (click)="refresh()" class="pointer" matTooltip="Log out from system">
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="exit_to_app">exit_to_app</mat-icon>
+        </a>
+
+
+
     </div>
-    
+
 </mat-toolbar>
-    
