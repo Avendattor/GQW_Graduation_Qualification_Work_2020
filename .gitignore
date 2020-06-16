@@ -17,6 +17,7 @@ from_D-Link/test_WEB/
 ~$*.doc*
 ~W*.tmp
 ~$*.pptx
+~$*.rtf
 
 # temp folder
 temp/
