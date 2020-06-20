@@ -1,21 +1,31 @@
-# GQW_Graduation_Qualification_Work
- Graduation_Qualification_Work, 2020 year
+# ENG
+## GQW_Graduation_Qualification_Work_2020
+Graduation Qualification Work, 2020 year
 
-[Deploy server](https://sla-web.web.app/) 
+## Title: "Разработка WEB-интерфейса SLA-сервера"
 
-[CORS proxy](https://stark-depths-37590.herokuapp.com/)
+## Instructions
+1. Warm up [CORS proxy](https://stark-depths-37590.herokuapp.com/) by loading page
+2. [Deploy server](https://sla-web.web.app/) is ready to use
 
-# Название: Разработка WEB-интерфейса SLA-сервера
+## File hierarchy
+- main Angular project: [Angular/SLA](Angular/SLA)
+- explantory note: [.pdf](docs_my/explanatory_note/merged/EN.pdf)
+- presentation: [.pdf](docs_my/explanatory_note/presentation/Panin_645.pdf) & [.pptx](docs_my/explanatory_note/presentation/Panin_645.pptx)
 
-Руководитель - Чичикин Вячеслав Алексеевич
+# RUS
 
-Содержание:
-1. Описание проблемы
-2. Аналогичные средства
-3. Предлагаемое средство 
-    "В связи с тем, что аналоги обладают рядом перечисленных недостатков, тема ВКР является актуальной"
-4. Разработка собственного ...
-5. Выбор средств для разработки
+## GQW_Graduation_Qualification_Work_2020
+Выпускная Квалификационная Работа, 2020 год
 
-* 15-20 слайдов на ВКР (не более 5 минут на презентацию) 
-* Минимум 100 страниц
+## Название: "Разработка WEB-интерфейса SLA-сервера"
+
+## Инструкция
+1. Запустить [CORS proxy](https://stark-depths-37590.herokuapp.com/) путём загрузки страницы
+2. [Deploy server](https://sla-web.web.app/) готов к использованию
+
+## Быстрая навигация по репозиторию
+
+- основной проект Angular: [Angular/SLA](Angular/SLA)
+- пояснительная записка: [.pdf](docs_my/explanatory_note/merged/EN.pdf)
+- презентация для защиты: [.pdf](docs_my/explanatory_note/presentation/Panin_645.pdf) & [.pptx](docs_my/explanatory_note/presentation/Panin_645.pptx)
