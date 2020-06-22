@@ -370,8 +370,8 @@ export class SearchComponent implements OnInit {
     this.sharedService.updateJSON(dataToSend);
   }
 
-  generateEndingOfTheWord(dataToProccess) {
-    if (dataToProccess.length == 1 || dataToProccess.length == -1) {
+  generateEndingOfTheWord(dataToProcess) {
+    if (dataToProcess.length == 1 || dataToProcess.length == -1) {
       return '';
     }
 
