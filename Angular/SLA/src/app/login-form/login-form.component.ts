@@ -13,7 +13,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginFormComponent implements OnInit {
 
   inputUserName: string = '';
-  inputPassword: string;
+  inputPassword: string = '';
   hashedPassword;
   hidelogin = true;
 
@@ -69,13 +69,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   logIn() {
-    this.loginProcess = true;
-    // this.loginEvent.emit([this.inputUserName, this.inputPassword]);
+    if (this.inputPassword !== '' && this.inputUserName !== '') {
+      this.loginProcess = true;
+      // this.loginEvent.emit([this.inputUserName, this.inputPassword]);
+      this.hashedPassword = Md5.hashStr(this.inputPassword);
+      this.postLoginData = {
+        username: this.inputUserName,
+        password: this.hashedPassword
+      }
 
-    this.hashedPassword = Md5.hashStr(this.inputPassword);
-    this.postLoginData = {
-      username: this.inputUserName,
-      password: this.hashedPassword
     };
 
 
